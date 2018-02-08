@@ -1,13 +1,22 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { 
+  applyMiddleware,
+  compose,
+  createStore,
+} from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { appReducer } from './reducers';
 import { StoreState } from './types';
+import { fetchAvailablePizzaSizes } from './actions';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
+
+// tslint:disable-next-line
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore<StoreState>(
   appReducer, 
@@ -15,10 +24,13 @@ const store = createStore<StoreState>(
     availablePizzaSizes: [],
     cart: [],
     currentPizza: null,
+    isLoading: false,
   },
-  // tslint:disable-next-line
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk)),
 );
+
+// tslint:disable-next-line
+store.dispatch(fetchAvailablePizzaSizes());
 
 ReactDOM.render(
   <Provider store={store}>

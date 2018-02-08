@@ -1,10 +1,14 @@
+import { ThunkAction } from 'redux-thunk';
+import { Dispatch } from 'react-redux';
 import {
   ReceivedPizzaSize,
   AvailablePizzaSize,
   Pizza,
   CurrentPizza,
   Topping,
+  StoreState,
 } from '../types';
+import ApiService from '../utils/ApiService';
 
 export enum TypeKeys {
   RECEIVE_AVAILABLE_PIZZA_SIZES = 'RECEIVE_AVAILABLE_PIZZA_SIZES',
@@ -13,6 +17,7 @@ export enum TypeKeys {
   ADD_PIZZA_TO_CART = 'ADD_PIZZA_TO_CART',
   REMOVE_PIZZA_FROM_CART = 'REMOVE_PIZZA_FROM_CART',
   SET_SELECTED_IN_CURRENT_PIZZA_TOPPING = 'SET_SELECTED_IN_CURRENT_PIZZA_TOPPING',
+  REQUEST_AVAILABLE_PIZZA_SIZES = 'REQUEST_AVAILABLE_PIZZA_SIZES',
 }
 
 export interface ReceiveAvailablePizzaSizes {
@@ -45,8 +50,12 @@ export interface ClearCurrentPizza {
   type: TypeKeys.CLEAR_CURRENT_PIZZA;
 }
 
+export interface RequestAvailablePizzaSizes {
+  type: TypeKeys.REQUEST_AVAILABLE_PIZZA_SIZES;
+}
+
 export type ActionTypes = ReceiveAvailablePizzaSizes | AddPizzaToCart | RemovePizzaFromCart 
-  | SetSelectedInCurrentPizzaTopping | SetCurrentPizza | ClearCurrentPizza;
+  | SetSelectedInCurrentPizzaTopping | SetCurrentPizza | ClearCurrentPizza | RequestAvailablePizzaSizes;
 
 export function receiveAvailablePizzaSizes(receivedPizzaSizes: ReceivedPizzaSize[]): ReceiveAvailablePizzaSizes {
   const pizzaSizes = receivedPizzaSizes.map(receivedPizzaSize => {
@@ -133,3 +142,35 @@ export function clearCurrentPizza(): ClearCurrentPizza {
     type: TypeKeys.CLEAR_CURRENT_PIZZA,
   };
 }
+
+export function requestAvailablePizzaSizes(): RequestAvailablePizzaSizes {
+  return {
+    type: TypeKeys.REQUEST_AVAILABLE_PIZZA_SIZES,
+  };
+}
+
+export const fetchAvailablePizzaSizes = 
+  (): ThunkAction<void, StoreState, null> => 
+    (dispatch: Dispatch<StoreState>) => {
+      dispatch(requestAvailablePizzaSizes());
+      const apiService = new ApiService();
+
+      apiService
+        .fetchAllPizzaSizes()
+        .then((result) => dispatch(
+          receiveAvailablePizzaSizes(result.data.pizzaSizes)
+        ));
+    };
+
+// export function fetchAvailablePizzaSizes() {
+//   return (dispatch: Dispatch<StoreState>) => {
+//     dispatch(requestAvailablePizzaSizes());
+//     const apiService = new ApiService();
+
+//     apiService
+//       .fetchAllPizzaSizes()
+//       .then((result) => dispatch(
+//         receiveAvailablePizzaSizes(result.data.pizzaSizes)
+//       ));
+//   };
+// }

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import PizzaSizeSelectorContainer from '../containers/PizzaSizeSelectorContainer';
+import PizzaCustomizerContainer from '../containers/PizzaCustomizerContainer';
+import CartContainer from '../containers/CartContainer';
 
 import './App.css';
 
@@ -8,8 +10,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <PizzaSizeSelectorContainer />
-        {/* <PizzaCustomizer />
-        <Cart /> */}
+        <PizzaCustomizerContainer />
+        <CartContainer />
       </div>
     );
   }

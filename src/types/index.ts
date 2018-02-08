@@ -1,3 +1,5 @@
+// Interfaces related to the State
+
 interface PizzaSize {
   name: string;
   maxToppings: number;
@@ -33,11 +35,15 @@ export interface CurrentPizza extends PizzaSize {
   toppings: CurrentPizzaTopping[];
 }
 
+// Application state interface
 export interface StoreState {
   availablePizzaSizes: AvailablePizzaSize[];
   currentPizza: CurrentPizza | null;
   cart: Pizza[];
+  isLoading: boolean;
 }
+
+// Other interfaces
 
 export interface ReceivedPizzaTopping {
   name: string;

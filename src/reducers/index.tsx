@@ -10,6 +10,7 @@ export function appReducer(state: StoreState, action: ActionTypes): StoreState {
       return { 
         ...state,
         availablePizzaSizes: action.pizzaSizes,
+        isLoading: false,
       };
 
     case TypeKeys.ADD_PIZZA_TO_CART:
@@ -60,6 +61,12 @@ export function appReducer(state: StoreState, action: ActionTypes): StoreState {
       return {
         ...state,
         currentPizza: null,
+      };
+    
+    case TypeKeys.REQUEST_AVAILABLE_PIZZA_SIZES:
+      return {
+        ...state,
+        isLoading: true,
       };
 
     default:
