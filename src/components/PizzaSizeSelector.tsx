@@ -8,6 +8,7 @@ interface Props {
 
 const PizzaSizeSelector = (props: Props) => (
   <div>
+    <h2>Select a pizza size to customize</h2>
     {props.availablePizzaSizes.map((pizzaSize) => (
       <div key={pizzaSize.name}>
         <span>{pizzaSize.name}</span>

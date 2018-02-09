@@ -4,10 +4,11 @@ import {
   ActionTypes,
   setCurrentPizza,
  } from '../actions';
+import { getAvailablePizzas } from '../selectors';
 import PizzaSizeSelector from '../components/PizzaSizeSelector';
 
 const mapStateToProps = (state: StoreState) => ({
-  availablePizzaSizes: state.availablePizzaSizes,
+  availablePizzaSizes: getAvailablePizzas(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({

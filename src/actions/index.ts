@@ -161,16 +161,3 @@ export const fetchAvailablePizzaSizes =
           receiveAvailablePizzaSizes(result.data.pizzaSizes)
         ));
     };
-
-// export function fetchAvailablePizzaSizes() {
-//   return (dispatch: Dispatch<StoreState>) => {
-//     dispatch(requestAvailablePizzaSizes());
-//     const apiService = new ApiService();
-
-//     apiService
-//       .fetchAllPizzaSizes()
-//       .then((result) => dispatch(
-//         receiveAvailablePizzaSizes(result.data.pizzaSizes)
-//       ));
-//   };
-// }

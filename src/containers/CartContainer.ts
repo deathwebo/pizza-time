@@ -4,10 +4,15 @@ import {
   ActionTypes,
   removePizzaFromCart,
  } from '../actions';
+import { 
+  getPizzasInCartWithCalculatedTotalPrice,
+  getTotalPriceInCart,
+} from '../selectors';
 import Cart from '../components/Cart';
 
 const mapStateToProps = (state: StoreState) => ({
-  pizzasInCart: state.cart,
+  pizzasInCart: getPizzasInCartWithCalculatedTotalPrice(state),
+  totalPriceInCart: getTotalPriceInCart(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({

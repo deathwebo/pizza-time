@@ -58,3 +58,9 @@ export interface ToppingEntry {
 export interface ReceivedPizzaSize extends PizzaSize {
   toppings: ToppingEntry[];
 }
+
+export interface PizzaWithTotalPice {
+  name: string;
+  toppingsNames: string;
+  totalPrice: number;
+}

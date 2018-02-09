@@ -9,6 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <h1>Pizza Time</h1>
         <PizzaSizeSelectorContainer />
         <PizzaCustomizerContainer />
         <CartContainer />

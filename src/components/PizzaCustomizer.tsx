@@ -3,7 +3,10 @@ import { CurrentPizza } from '../types';
 
 interface Props {
   currentPizza: CurrentPizza | null;
+  currentTotalPrice: number;
   setToppingSelected: (pizzaName: string, toppingName: string, selected: boolean) => void;
+  clearCurrentPizza: () => void;
+  addPizzaToCart: (pizza: CurrentPizza) => void;
 }
 
 const PizzaCustomizer = (props: Props) => {
@@ -13,8 +16,10 @@ const PizzaCustomizer = (props: Props) => {
   const { currentPizza } = props;
   return (
     <div>
+      <h2>Select the toppings of your choice for your pizza</h2>
       <div>
-        <p>{currentPizza.name}</p>
+        <p>Customizing a {currentPizza.name} pizza</p>
+        <p>Base price ${currentPizza.basePrice}</p>
       </div>
       <div>
         <ul>
@@ -28,10 +33,26 @@ const PizzaCustomizer = (props: Props) => {
                   topping.name,
                   e.target.checked
                 )}
+                checked={topping.selected}
               />
             </li>
           ))}
         </ul>
+        <div>
+          <strong>This pizza total ${props.currentTotalPrice}</strong>
+          <button
+            type="button"
+            onClick={() => props.clearCurrentPizza()}
+          >
+            CLEAR
+          </button>
+          <button
+            type="button"
+            onClick={() => props.addPizzaToCart(currentPizza)}
+          >
+            ADD
+          </button>
+        </div>
       </div>    
     </div>
   );

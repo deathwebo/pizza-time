@@ -1,30 +1,15 @@
 import * as React from 'react';
-import { Pizza, Topping } from '../types';
+import { PizzaWithTotalPice } from '../types';
 
 interface Props {
-  pizzasInCart: Pizza[];
+  pizzasInCart: PizzaWithTotalPice[];
+  totalPriceInCart: number;
   removePizza: (pizzaName: string) => void;
-}
-
-interface ToppingInfo {
-  names: string;
-  totalPrice: number;
-}
-
-function getToppingNamesAndTotalPrice(toppings: Topping[]): ToppingInfo {
-  return toppings.reduce(
-    (acc: ToppingInfo, topping: Topping) => {
-      const names = `${acc.names}, ${topping.name}`;
-      const totalPrice = acc.totalPrice + topping.price;
-
-      return { names, totalPrice };
-    }, 
-    { names: '', totalPrice: 0 },
-  );
 }
 
 const Cart = (props: Props) => (
   <div>
+    <h2>Your cart</h2>
     <table>
       <thead>
         <tr>
@@ -36,13 +21,11 @@ const Cart = (props: Props) => (
       </thead>
       <tbody>
       {props.pizzasInCart.map(pizza => {
-        const toppingInfo = getToppingNamesAndTotalPrice(pizza.toppings);
-        const totalPrice = pizza.basePrice + toppingInfo.totalPrice;
         return (
           <tr key={pizza.name}>
             <td>{pizza.name}</td>
-            <td>{toppingInfo.names}</td>
-            <td>{totalPrice}</td>
+            <td>{pizza.toppingsNames}</td>
+            <td>{pizza.totalPrice}</td>
             <td>
               <button
                 type="button"
@@ -56,6 +39,9 @@ const Cart = (props: Props) => (
       })}
       </tbody>
     </table>
+    <p>
+      <strong>Your total is ${props.totalPriceInCart}</strong>
+    </p>
   </div>
 );
 
