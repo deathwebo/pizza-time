@@ -115,3 +115,13 @@ export const getTotalPriceInCart = createSelector(
     );
   },
 );
+
+export const getCurrentPizzaTotalSelectedToppings = createSelector(
+  [getCurrentPizza],
+  (pizza: CurrentPizza | null): number => {
+    if (pizza === null) {
+      return 0;
+    }
+    return pizza.toppings.filter(topping => topping.selected).length;
+  },
+);

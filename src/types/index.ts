@@ -2,7 +2,7 @@
 
 interface PizzaSize {
   name: string;
-  maxToppings: number;
+  maxToppings: number | number;
   basePrice: number;
 }
 

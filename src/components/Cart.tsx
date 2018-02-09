@@ -15,7 +15,7 @@ const Cart = (props: Props) => (
         <tr>
           <th>Size</th>
           <th>Toppings</th>
-          <th>Total price</th>
+          <th>Pizza total price</th>
           <th>remove</th>
         </tr>
       </thead>

@@ -9,12 +9,14 @@ import {
 import { 
   getCurrentPizza,
   getCurrentPizzaTotalprice,
+  getCurrentPizzaTotalSelectedToppings,
 } from '../selectors';
 import PizzaCustomizer from '../components/PizzaCustomizer';
 
 const mapStateToProps = (state: StoreState) => ({
   currentPizza: getCurrentPizza(state),
   currentTotalPrice: getCurrentPizzaTotalprice(state),
+  totalSelectedToppings: getCurrentPizzaTotalSelectedToppings(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
