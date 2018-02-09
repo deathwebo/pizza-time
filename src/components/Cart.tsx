@@ -4,12 +4,12 @@ import { PizzaWithTotalPice } from '../types';
 interface Props {
   pizzasInCart: PizzaWithTotalPice[];
   totalPriceInCart: number;
-  removePizza: (pizzaName: string) => void;
+  removePizza: (index: number) => void;
 }
 
 const Cart = (props: Props) => (
   <div>
-    <h2>Your cart</h2>
+    <h2>Pizza Cart</h2>
     <table>
       <thead>
         <tr>
@@ -20,16 +20,16 @@ const Cart = (props: Props) => (
         </tr>
       </thead>
       <tbody>
-      {props.pizzasInCart.map(pizza => {
+      {props.pizzasInCart.map((pizza, idx) => {
         return (
-          <tr key={pizza.name}>
+          <tr key={idx}>
             <td>{pizza.name}</td>
             <td>{pizza.toppingsNames}</td>
             <td>{pizza.totalPrice}</td>
             <td>
               <button
                 type="button"
-                onClick={(e) => props.removePizza(pizza.name)}
+                onClick={(e) => props.removePizza(idx)}
               >
                 remove
               </button>

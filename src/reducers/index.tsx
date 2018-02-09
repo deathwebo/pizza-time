@@ -20,7 +20,7 @@ export function appReducer(state: StoreState, action: ActionTypes): StoreState {
       };
 
     case TypeKeys.REMOVE_PIZZA_FROM_CART: {
-      const cart = state.cart.filter(pizza => pizza.name !== action.pizzaName);
+      const cart = state.cart.filter((pizza, index) => index !== action.index);
       return { ...state, cart };
     }
 

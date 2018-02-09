@@ -16,7 +16,7 @@ const mapStateToProps = (state: StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
-  removePizza: (pizzaName: string) => dispatch(removePizzaFromCart(pizzaName)),
+  removePizza: (index: number) => dispatch(removePizzaFromCart(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

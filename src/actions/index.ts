@@ -32,7 +32,7 @@ export interface AddPizzaToCart {
 
 export interface RemovePizzaFromCart {
   type: TypeKeys.REMOVE_PIZZA_FROM_CART;
-  pizzaName: string;
+  index: number;
 }
 
 export interface SetSelectedInCurrentPizzaTopping {
@@ -101,9 +101,9 @@ export function addPizzaToCart(pizzaToAdd: CurrentPizza): AddPizzaToCart {
   };
 }
 
-export function removePizzaFromCart(pizzaName: string): RemovePizzaFromCart {
+export function removePizzaFromCart(index: number): RemovePizzaFromCart {
   return {
-    pizzaName,
+    index,
     type: TypeKeys.REMOVE_PIZZA_FROM_CART,
   };
 }
