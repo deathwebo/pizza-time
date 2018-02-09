@@ -2,11 +2,28 @@
 
 Application for users to select pizza sizes with their topping of choice.
 
-Created using React, Redux, GraphQL and Typescript
+Created React, Redux, GraphQL and Typescript. Using the `create-react-app` tool for a quick setup.
+
+## Live demo
+
+There's a live demo running in https://deathwebo.github.io/pizza-time but it looks like 
+the graphql server is not accepting requests from a source other than localhost. 
+So the pizza sizes are not currently loading.
 
 ## SETUP
 
-Since this application is based on the `create-react-app` script the only requirement to run the project is to execute the command `yarn start` or `npm run start`.
+## Requirements
+
+* node and npm installed
+
+## Steps
+
+* Clone this repo locally
+* Change directory to the newly created repository directory
+* Execute `yarn install` or `npm install` to install all dependencies
+* Execute `yarn start` or `npm run install` to initialize the local instance
+* Visit the provided url, `http://localhost:3000` by default
+* Order delicious pizza!
 
 ## TODO
 
